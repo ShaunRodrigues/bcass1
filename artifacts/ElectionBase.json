@@ -1,0 +1,351 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"advancePhase()": "be25a718",
+			"commit(bytes32)": "f14fcbc8",
+			"commitDeadline()": "a2ff0209",
+			"electionId()": "051364d4",
+			"finalize()": "4bb278f3",
+			"hasCommit(bytes32)": "a4071b7f",
+			"name()": "06fdde03",
+			"nullifierUsed(bytes32)": "7ecf686d",
+			"owner()": "8da5cb5b",
+			"phase()": "b1c9fe6e",
+			"registry()": "7b103999",
+			"reveal(bytes,bytes32,bytes32)": "9df1baa1",
+			"revealDeadline()": "b14b28a3",
+			"setDeadlines(uint64,uint64)": "53481b5e",
+			"transferOwnership(address)": "f2fde38b"
+		}
+	},
+	"abi": [
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "bytes32",
+					"name": "comHash",
+					"type": "bytes32"
+				}
+			],
+			"name": "Committed",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [],
+			"name": "Finalized",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "previousOwner",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "newOwner",
+					"type": "address"
+				}
+			],
+			"name": "OwnershipTransferred",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "enum ElectionBase.Phase",
+					"name": "phase",
+					"type": "uint8"
+				}
+			],
+			"name": "PhaseChanged",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "bytes32",
+					"name": "comHash",
+					"type": "bytes32"
+				},
+				{
+					"indexed": true,
+					"internalType": "bytes32",
+					"name": "nullifier",
+					"type": "bytes32"
+				}
+			],
+			"name": "Revealed",
+			"type": "event"
+		},
+		{
+			"inputs": [],
+			"name": "advancePhase",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "comHash",
+					"type": "bytes32"
+				}
+			],
+			"name": "commit",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "commitDeadline",
+			"outputs": [
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "electionId",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "finalize",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "",
+					"type": "bytes32"
+				}
+			],
+			"name": "hasCommit",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "name",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "",
+					"type": "bytes32"
+				}
+			],
+			"name": "nullifierUsed",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "owner",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "phase",
+			"outputs": [
+				{
+					"internalType": "enum ElectionBase.Phase",
+					"name": "",
+					"type": "uint8"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "registry",
+			"outputs": [
+				{
+					"internalType": "contract VoterRegistry",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes",
+					"name": "ballotEncoded",
+					"type": "bytes"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "salt",
+					"type": "bytes32"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "secret",
+					"type": "bytes32"
+				}
+			],
+			"name": "reveal",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "revealDeadline",
+			"outputs": [
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "_commit",
+					"type": "uint64"
+				},
+				{
+					"internalType": "uint64",
+					"name": "_reveal",
+					"type": "uint64"
+				}
+			],
+			"name": "setDeadlines",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "newOwner",
+					"type": "address"
+				}
+			],
+			"name": "transferOwnership",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		}
+	]
+}

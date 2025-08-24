@@ -1,0 +1,297 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "electionId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "ic",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "registrant",
+						"type": "address"
+					}
+				],
+				"name": "IdentityCommitmentAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "electionId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "ic",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "removedBy",
+						"type": "address"
+					}
+				],
+				"name": "IdentityCommitmentRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "electionId",
+						"type": "uint256"
+					}
+				],
+				"name": "deregister",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "electionId",
+						"type": "uint256"
+					}
+				],
+				"name": "getActiveICs",
+				"outputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "",
+						"type": "bytes32[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "electionId",
+						"type": "uint256"
+					}
+				],
+				"name": "getAllICs",
+				"outputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "",
+						"type": "bytes32[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "electionId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "ic",
+						"type": "bytes32"
+					}
+				],
+				"name": "isActive",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "electionId",
+						"type": "uint256"
+					}
+				],
+				"name": "register",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "registrationOpen",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "open",
+						"type": "bool"
+					}
+				],
+				"name": "setRegistrationOpen",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"deregister(uint256)": {
+					"notice": "Allow owner or the original registrant to deregister"
+				},
+				"getActiveICs(uint256)": {
+					"notice": "Get only active voters for an election"
+				},
+				"getAllICs(uint256)": {
+					"notice": "Get full voter history for an election"
+				},
+				"isActive(uint256,bytes32)": {
+					"notice": "Check whether an IC is currently active in an election"
+				},
+				"register(uint256)": {
+					"notice": "Allow anyone to register themselves for an election"
+				},
+				"setRegistrationOpen(bool)": {
+					"notice": "Owner can toggle global registration switch"
+				},
+				"transferOwnership(address)": {
+					"notice": "Normal external ownership transfer (requires current owner)."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/VoterRegistry.sol": "VoterRegistry"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Ownable.sol": {
+			"keccak256": "0x752af615539ea671345663d97cf4d63b331b9008ca76746fccc32881d13577e1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ab1d72c571aa187c8c73c53967e03c95feca5848355dc646e5fbfbc9909c3b48",
+				"dweb:/ipfs/QmRciSZ69EBFBXy2RKhse4X3vVgBiHUf9gt8DyfmnHvxP3"
+			]
+		},
+		"contracts/VoterRegistry.sol": {
+			"keccak256": "0x060c8a60956895bb5f22cc7488311d921aeff5fb10778506890c54d3c388d062",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://78ed0bc6442fb69b48b7b87de51284f10e4389e7184ca0c5bb168e983bfc9a7c",
+				"dweb:/ipfs/QmRVDciVXUPKnaDQy2nLDigLD9nbtseAUBqyi6c6SUa6Jb"
+			]
+		}
+	},
+	"version": 1
+}

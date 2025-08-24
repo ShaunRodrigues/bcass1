@@ -1,0 +1,346 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "comHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "Committed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [],
+				"name": "Finalized",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "enum ElectionBase.Phase",
+						"name": "phase",
+						"type": "uint8"
+					}
+				],
+				"name": "PhaseChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "comHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "nullifier",
+						"type": "bytes32"
+					}
+				],
+				"name": "Revealed",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "advancePhase",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "comHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "commit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "commitDeadline",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "electionId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "finalize",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "hasCommit",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "nullifierUsed",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "phase",
+				"outputs": [
+					{
+						"internalType": "enum ElectionBase.Phase",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "registry",
+				"outputs": [
+					{
+						"internalType": "contract VoterRegistry",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "ballotEncoded",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "salt",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "secret",
+						"type": "bytes32"
+					}
+				],
+				"name": "reveal",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "revealDeadline",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "_commit",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint64",
+						"name": "_reveal",
+						"type": "uint64"
+					}
+				],
+				"name": "setDeadlines",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"transferOwnership(address)": {
+					"notice": "Normal external ownership transfer (requires current owner)."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Elections/ElectionBase.sol": "ElectionBase"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Elections/ElectionBase.sol": {
+			"keccak256": "0x02184125e99958bdb3be108fd495eb0a4b762364220f7495e8554f36edc313f1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b790ff46919dcfdb9ed027196621198c2720716fb8f60ce9133ac20835c2f909",
+				"dweb:/ipfs/QmQUvw2jSsrxBdD1BoTRA29pDX65CAB8PUC7PqMecxPQ8S"
+			]
+		},
+		"contracts/Ownable.sol": {
+			"keccak256": "0x752af615539ea671345663d97cf4d63b331b9008ca76746fccc32881d13577e1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ab1d72c571aa187c8c73c53967e03c95feca5848355dc646e5fbfbc9909c3b48",
+				"dweb:/ipfs/QmRciSZ69EBFBXy2RKhse4X3vVgBiHUf9gt8DyfmnHvxP3"
+			]
+		},
+		"contracts/VoterRegistry.sol": {
+			"keccak256": "0xe31c510df5bc1366f7dee530a23823586965532f216f32bd9d615026ce9291f7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://65bd4e0fc2d0b593ad940708e256db4ea470c089fcf2862d9a80463c16940dda",
+				"dweb:/ipfs/QmNpFCgSpVUyQ52LjTae44WEXZF5hPZZ4pi6xuwLxwDyTp"
+			]
+		}
+	},
+	"version": 1
+}

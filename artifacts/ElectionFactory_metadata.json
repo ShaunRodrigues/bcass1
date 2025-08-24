@@ -1,0 +1,652 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_fptpImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_irvImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_condorcetImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_bordaImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_prImpl",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "FailedDeployment",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "needed",
+						"type": "uint256"
+					}
+				],
+				"name": "InsufficientBalance",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "election",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "BordaCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "election",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "CondorcetCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "election",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "FPTPCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "election",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "IRVCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "election",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "PRCreated",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "bordaImpl",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "condorcetImpl",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint64",
+						"name": "commitDeadline",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint64",
+						"name": "revealDeadline",
+						"type": "uint64"
+					},
+					{
+						"internalType": "string[]",
+						"name": "candidates",
+						"type": "string[]"
+					}
+				],
+				"name": "createBorda",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint64",
+						"name": "commitDeadline",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint64",
+						"name": "revealDeadline",
+						"type": "uint64"
+					},
+					{
+						"internalType": "string[]",
+						"name": "candidates",
+						"type": "string[]"
+					}
+				],
+				"name": "createCondorcet",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint64",
+						"name": "commitDeadline",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint64",
+						"name": "revealDeadline",
+						"type": "uint64"
+					},
+					{
+						"internalType": "string[]",
+						"name": "candidates",
+						"type": "string[]"
+					}
+				],
+				"name": "createFPTP",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint64",
+						"name": "commitDeadline",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint64",
+						"name": "revealDeadline",
+						"type": "uint64"
+					},
+					{
+						"internalType": "string[]",
+						"name": "candidates",
+						"type": "string[]"
+					}
+				],
+				"name": "createIRV",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint64",
+						"name": "commitDeadline",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint64",
+						"name": "revealDeadline",
+						"type": "uint64"
+					},
+					{
+						"internalType": "string[]",
+						"name": "partyNames",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint8",
+						"name": "seats",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint16",
+						"name": "thresholdBps",
+						"type": "uint16"
+					}
+				],
+				"name": "createPRDhondt",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "elections",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fptpImpl",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "irvImpl",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "prImpl",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "registry",
+				"outputs": [
+					{
+						"internalType": "contract VoterRegistry",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_fptpImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_irvImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_condorcetImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_bordaImpl",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_prImpl",
+						"type": "address"
+					}
+				],
+				"name": "setImplementations",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"FailedDeployment()": [
+					{
+						"details": "The deployment failed."
+					}
+				],
+				"InsufficientBalance(uint256,uint256)": [
+					{
+						"details": "The ETH balance of the account is not enough to perform the operation."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"transferOwnership(address)": {
+					"notice": "Normal external ownership transfer (requires current owner)."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/ElectionFactory.sol": "ElectionFactory"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/proxy/Clones.sol": {
+			"keccak256": "0x7e918671c04972845975935ea13c9ce0be1228031ba0e929d0f1f68fd1f17214",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3027ebaeef3e678ad9bae26f0556469878e992bf7dec94bede328a92be529419",
+				"dweb:/ipfs/Qmdu4RfMYv9Q7iHWuYfyUL6fZKc73nM4YWizNP8w1xay56"
+			]
+		},
+		"@openzeppelin/contracts/utils/Create2.sol": {
+			"keccak256": "0xbb7e8401583d26268ea9103013bcdcd90866a7718bd91105ebd21c9bf11f4f06",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://866a11ad89c93ee918078f7a46ae31e17d89216ce64603f0d34be7ed0a5c520e",
+				"dweb:/ipfs/QmW3ckLEJg2v2NzuVLNJFmRuerGSipw6Dzg6ntbmqbAGoC"
+			]
+		},
+		"@openzeppelin/contracts/utils/Errors.sol": {
+			"keccak256": "0x6afa713bfd42cf0f7656efa91201007ac465e42049d7de1d50753a373648c123",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ba1d02f4847670a1b83dec9f7d37f0b0418d6043447b69f3a29a5f9efc547fcf",
+				"dweb:/ipfs/QmQ7iH2keLNUKgq2xSWcRmuBE5eZ3F5whYAkAGzCNNoEWB"
+			]
+		},
+		"contracts/ElectionFactory.sol": {
+			"keccak256": "0x4a5c4960c20c0ea461f700f588a645bbf1669ae343124a8bd7179e2a0799f4ff",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1966d6232fa7796193ffb5683ee6bbb02d7c50aa7e364d82008bcb473ce0d8d9",
+				"dweb:/ipfs/QmNfUyHvUQSGta55644S7nF7yA6nRCpN9A36WutBYbecC8"
+			]
+		},
+		"contracts/Elections/BordaElection.sol": {
+			"keccak256": "0x7701fc51605e05491d6121804480f6e76e3dc620128ff60a75b52b103fb069e2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://40a4f88a1a7fa9c4c49081c57211263583ffa0b98444c334fd5cebc423399dc2",
+				"dweb:/ipfs/Qmaccgm7irTmxXjsYamgiSRLLCRHvvi5cUHMEKzh8Fjk24"
+			]
+		},
+		"contracts/Elections/CondorcetElection.sol": {
+			"keccak256": "0x2903eae61c8ec29fc5660f89be49bf8200427ad8a40776d0f267cab91bd7c099",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fdd4e5d4827ae6d307a33ef2958ab4a6721ff5347eb4c7890b16e1881535604b",
+				"dweb:/ipfs/QmWQZwBi6fpAnBJgEFLx4sH3WfVRQ1RV6x7fhXuQsShCBh"
+			]
+		},
+		"contracts/Elections/ElectionBase.sol": {
+			"keccak256": "0x02184125e99958bdb3be108fd495eb0a4b762364220f7495e8554f36edc313f1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b790ff46919dcfdb9ed027196621198c2720716fb8f60ce9133ac20835c2f909",
+				"dweb:/ipfs/QmQUvw2jSsrxBdD1BoTRA29pDX65CAB8PUC7PqMecxPQ8S"
+			]
+		},
+		"contracts/Elections/FPTPElection.sol": {
+			"keccak256": "0xbd8a926e953bbd31ac21d8468ef450ad4529ad5158adfb9babdc1e62d8dcb3dd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c6e6cc72fc7d2047c471e8618082f22ad2d8353d7710d1f88ef165074f3d8885",
+				"dweb:/ipfs/QmVhTfyznrAqG5SPGK9C8UfDR4zyMA7KamfkrBQs9nCTaS"
+			]
+		},
+		"contracts/Elections/IRVElection.sol": {
+			"keccak256": "0x2e543e98e47e98b111211d6d1f27a7f8df9c5dd150bc382bffb12c9abed291ca",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6156a0c13e88279a974f2273a765723cf2bdd7a566aa61408a8685f942681e78",
+				"dweb:/ipfs/QmXv4GoGfswejSKrbcpo2j3hBArJ6ZmtSzeB6GCNwfezDb"
+			]
+		},
+		"contracts/Elections/PRElectionDhondt.sol": {
+			"keccak256": "0x90f3963adb58d9e31c82a94d88a0e0841ad568b1ce7abcb2291f92156c1b004d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://cf28912ca40ea959447d2be6f4d8d2aa36565e5b7bab7515bd57c86e6d6623c8",
+				"dweb:/ipfs/QmWZPhqfUMDStNFgzhkPYeqfAWrzq8PMxr5dpFjtBdDHSv"
+			]
+		},
+		"contracts/Ownable.sol": {
+			"keccak256": "0x752af615539ea671345663d97cf4d63b331b9008ca76746fccc32881d13577e1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ab1d72c571aa187c8c73c53967e03c95feca5848355dc646e5fbfbc9909c3b48",
+				"dweb:/ipfs/QmRciSZ69EBFBXy2RKhse4X3vVgBiHUf9gt8DyfmnHvxP3"
+			]
+		},
+		"contracts/VoterRegistry.sol": {
+			"keccak256": "0x060c8a60956895bb5f22cc7488311d921aeff5fb10778506890c54d3c388d062",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://78ed0bc6442fb69b48b7b87de51284f10e4389e7184ca0c5bb168e983bfc9a7c",
+				"dweb:/ipfs/QmRVDciVXUPKnaDQy2nLDigLD9nbtseAUBqyi6c6SUa6Jb"
+			]
+		}
+	},
+	"version": 1
+}
