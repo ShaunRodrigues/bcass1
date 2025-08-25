@@ -122,7 +122,8 @@ abstract contract ElectionBase is Ownable {
 
     VoterRegistry public registry;
     string public name;
-    uint256 public electionId;
+
+    address election;
 
     Phase public phase;
     uint64 public commitDeadline;
@@ -148,8 +149,8 @@ abstract contract ElectionBase is Ownable {
     bool private baseInitialized;
     function _electionBaseInit(
         VoterRegistry _registry,
+        address _electionId,
         string calldata _name,
-        uint256 _electionId,
         uint64 _commitDeadline,
         uint64 _revealDeadline
     ) internal {
@@ -158,7 +159,7 @@ abstract contract ElectionBase is Ownable {
         baseInitialized = true;
         registry = _registry;
         name = _name;
-        electionId = _electionId;
+        election = _electionId;
         commitDeadline = _commitDeadline;
         revealDeadline = _revealDeadline;
         phase = Phase.Commit;
@@ -169,6 +170,7 @@ abstract contract ElectionBase is Ownable {
     function setDeadlines(uint64 _commit, uint64 _reveal) external onlyOwner {
         require(_commit < _reveal, "timeline");
         require(block.timestamp < _reveal, "past");
+        require(phase == Phase.Pending || phase == Phase.Commit, "too late");
         commitDeadline = _commit;
         revealDeadline = _reveal;
     }
@@ -195,13 +197,13 @@ abstract contract ElectionBase is Ownable {
 
     function reveal(bytes memory ballotEncoded, bytes32 salt, bytes32 secret) public inPhase(Phase.Reveal) {
         require(block.timestamp < revealDeadline, "reveal over");
-        bytes32 comHash = keccak256(abi.encodePacked(electionId, ballotEncoded, salt, secret));
+        bytes32 comHash = keccak256(abi.encodePacked(election, ballotEncoded, salt, secret));
         require(hasCommit[comHash], "no commit");
 
-        bytes32 ic = keccak256(abi.encodePacked(secret));
-        require(registry.isActive(electionId, ic), "not eligible");
+        bytes32 ic = keccak256(abi.encodePacked(msg.sender, election));
+        require(registry.isActive(election, ic), "not eligible");
 
-        bytes32 nullifier = keccak256(abi.encodePacked(secret, electionId));
+        bytes32 nullifier = keccak256(abi.encodePacked(secret, election));
         require(!nullifierUsed[nullifier], "already voted");
         nullifierUsed[nullifier] = true;
 

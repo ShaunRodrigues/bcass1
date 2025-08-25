@@ -15,28 +15,27 @@ const fptpAbi = JSON.parse(fs.readFileSync("./artifacts/FPTPElection.json")).abi
 const irvAbi = JSON.parse(fs.readFileSync("./artifacts/IRVElection.json")).abi;
 const bordaAbi = JSON.parse(fs.readFileSync("./artifacts/BordaElection.json")).abi;
 const condorcetAbi = JSON.parse(fs.readFileSync("./artifacts/CondorcetElection.json")).abi;
-const prAbi = JSON.parse(fs.readFileSync("./artifacts/PRElectionDhondt.json")).abi;
 
 // ==== PROVIDER + SIGNER ====
 const provider = new ethers.JsonRpcProvider(RPC_URL);
 const signer = new ethers.Wallet(PRIVATE_KEY, provider);
 
 // ================== HELPERS ==================
-async function deployElection(factory, type, name, candidatesOrParties, seats, thresholdBps) {
+async function deployElection(factory, type, name, candidates) {
   const now = Math.floor(Date.now() / 1000);
   const commitDeadline = now + 60; // 1 min commit
   const revealDeadline = now + 120; // 2 min reveal
 
   let tx;
   if (type === "FPTP") {
-    tx = await factory.createFPTP(name, commitDeadline, revealDeadline, candidatesOrParties);
+    tx = await factory.createFPTP(name, commitDeadline, revealDeadline, candidatess);
   } else if (type === "IRV") {
-    tx = await factory.createIRV(name, commitDeadline, revealDeadline, candidatesOrParties);
+    tx = await factory.createIRV(name, commitDeadline, revealDeadline, candidates);
   } else if (type === "BORDA") {
-    tx = await factory.createBorda(name, commitDeadline, revealDeadline, candidatesOrParties);
+    tx = await factory.createBorda(name, commitDeadline, revealDeadline, candidates);
   } else if (type === "CONDORCET") {
-    tx = await factory.createCondorcet(name, commitDeadline, revealDeadline, candidatesOrParties);
-  } else if (type === "PR") {
+    tx = await factory.createCondorcet(name, commitDeadline, revealDeadline, candidates);
+  /*} else if (type === "PR") {
     tx = await factory.createPRDhondt(
       name,
       commitDeadline,
@@ -44,7 +43,7 @@ async function deployElection(factory, type, name, candidatesOrParties, seats, t
       candidatesOrParties,
       seats,
       thresholdBps
-    );
+    );*/
   } else {
     throw new Error("Unknown election type!");
   }

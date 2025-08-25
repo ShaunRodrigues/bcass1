@@ -74,8 +74,8 @@ contract BordaElection is ElectionBase {
 
     function initialize(
         VoterRegistry _registry,
+        address _eId,
         string calldata _name,
-        uint256 _electionId,
         uint64 _commitDeadline,
         uint64 _revealDeadline,
         string[] calldata _cands,
@@ -84,7 +84,7 @@ contract BordaElection is ElectionBase {
         require(!initialized, "initialized");
         initialized = true;
 
-        _electionBaseInit(_registry, _name, _electionId, _commitDeadline, _revealDeadline);
+        _electionBaseInit(_registry, _eId,  _name, _commitDeadline, _revealDeadline);
         require(_cands.length >= 2 && _cands.length <= 50, "cand bounds");
         delete candidates;
         for (uint i = 0; i < _cands.length; i++) {

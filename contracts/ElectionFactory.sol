@@ -24,11 +24,11 @@ contract ElectionFactory is Ownable {
     address public bordaImpl;
     address public prImpl;
 
-    event FPTPCreated(address indexed election, bytes32 id);
-    event IRVCreated(address indexed election, bytes32 id);
-    event CondorcetCreated(address indexed election, bytes32 id);
-    event BordaCreated(address indexed election, bytes32 id);
-    event PRCreated(address indexed election, bytes32 id);
+    event FPTPCreated(address indexed election);
+    event IRVCreated(address indexed election);
+    event CondorcetCreated(address indexed election);
+    event BordaCreated(address indexed election);
+    event PRCreated(address indexed election);
 
     constructor(
         address _fptpImpl,
@@ -58,17 +58,6 @@ contract ElectionFactory is Ownable {
         prImpl = _prImpl;
     }
 
-    function _generateElectionId(address clone) internal view returns (bytes32) {
-        return keccak256(
-            abi.encodePacked(
-                block.timestamp,
-                msg.sender,
-                clone,
-                block.prevrandao // randomness in PoS Ethereum
-            )
-        );
-    }
-
     function createFPTP(
         string calldata name,
         uint64 commitDeadline,
@@ -76,11 +65,9 @@ contract ElectionFactory is Ownable {
         string[] calldata candidates
     ) external onlyOwner returns (address) {
         address clone = fptpImpl.clone();
-        bytes32 electionId = _generateElectionId(clone);
-        elections[electionId] = clone;
         // call initialize on clone
-        FPTPElection(clone).initialize(registry, name, uint256(electionId), commitDeadline, revealDeadline, candidates, msg.sender);
-        emit FPTPCreated(clone, electionId);
+        FPTPElection(clone).initialize(registry, clone, name, commitDeadline, revealDeadline, candidates, msg.sender);
+        emit FPTPCreated(clone);
         return clone;
     }
 
@@ -91,10 +78,8 @@ contract ElectionFactory is Ownable {
         string[] calldata candidates
     ) external onlyOwner returns (address) {
         address clone = irvImpl.clone();
-        bytes32 electionId = _generateElectionId(clone);
-        elections[electionId] = clone;
-        IRVElection(clone).initialize(registry, name, uint256(electionId), commitDeadline, revealDeadline, candidates, msg.sender);
-        emit IRVCreated(clone, electionId);
+        IRVElection(clone).initialize(registry, clone, name, commitDeadline, revealDeadline, candidates, msg.sender);
+        emit IRVCreated(clone);
         return clone;
     }
 
@@ -105,10 +90,8 @@ contract ElectionFactory is Ownable {
         string[] calldata candidates
     ) external onlyOwner returns (address) {
         address clone = condorcetImpl.clone();
-        bytes32 electionId = _generateElectionId(clone);
-        elections[electionId] = clone;
-        CondorcetElection(clone).initialize(registry, name, uint256(electionId), commitDeadline, revealDeadline, candidates, msg.sender);
-        emit CondorcetCreated(clone, electionId);
+        CondorcetElection(clone).initialize(registry, clone, name, commitDeadline, revealDeadline, candidates, msg.sender);
+        emit CondorcetCreated(clone);
         return clone;
     }
 
@@ -119,13 +102,11 @@ contract ElectionFactory is Ownable {
         string[] calldata candidates
     ) external onlyOwner returns (address) {
         address clone = bordaImpl.clone();
-        bytes32 electionId = _generateElectionId(clone);
-        elections[electionId] = clone;
-        BordaElection(clone).initialize(registry, name, uint256(electionId), commitDeadline, revealDeadline, candidates, msg.sender);
-        emit BordaCreated(clone, electionId);
+        BordaElection(clone).initialize(registry, clone, name, commitDeadline, revealDeadline, candidates, msg.sender);
+        emit BordaCreated(clone);
         return clone;
     }
-
+/*
     function createPRDhondt(
         string calldata name,
         uint64 commitDeadline,
@@ -135,11 +116,9 @@ contract ElectionFactory is Ownable {
         uint16 thresholdBps
     ) external onlyOwner returns (address) {
         address clone = prImpl.clone();
-        bytes32 electionId = _generateElectionId(clone);
-        elections[electionId] = clone;
-        PRElectionDhondt(clone).initialize(registry, name, uint256(electionId), commitDeadline, revealDeadline, partyNames, seats, thresholdBps, msg.sender);
-        emit PRCreated(clone, electionId);
+        PRElectionDhondt(clone).initialize(registry, name, commitDeadline, revealDeadline, partyNames, seats, thresholdBps, msg.sender);
+        emit PRCreated(clone);
         return clone;
-    }
+    }*/
 
 }
