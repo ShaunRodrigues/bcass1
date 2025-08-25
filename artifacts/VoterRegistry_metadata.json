@@ -10,9 +10,9 @@
 				"inputs": [
 					{
 						"indexed": true,
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					},
 					{
 						"indexed": false,
@@ -35,9 +35,9 @@
 				"inputs": [
 					{
 						"indexed": true,
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					},
 					{
 						"indexed": false,
@@ -77,9 +77,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					}
 				],
 				"name": "deregister",
@@ -96,9 +96,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					}
 				],
 				"name": "getActiveICs",
@@ -115,9 +115,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					}
 				],
 				"name": "getAllICs",
@@ -134,9 +134,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					},
 					{
 						"internalType": "bytes32",
@@ -171,9 +171,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					}
 				],
 				"name": "register",
@@ -235,19 +235,19 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"deregister(uint256)": {
+				"deregister(address)": {
 					"notice": "Allow owner or the original registrant to deregister"
 				},
-				"getActiveICs(uint256)": {
+				"getActiveICs(address)": {
 					"notice": "Get only active voters for an election"
 				},
-				"getAllICs(uint256)": {
+				"getAllICs(address)": {
 					"notice": "Get full voter history for an election"
 				},
-				"isActive(uint256,bytes32)": {
+				"isActive(address,bytes32)": {
 					"notice": "Check whether an IC is currently active in an election"
 				},
-				"register(uint256)": {
+				"register(address)": {
 					"notice": "Allow anyone to register themselves for an election"
 				},
 				"setRegistrationOpen(bool)": {
@@ -285,11 +285,11 @@
 			]
 		},
 		"contracts/VoterRegistry.sol": {
-			"keccak256": "0x060c8a60956895bb5f22cc7488311d921aeff5fb10778506890c54d3c388d062",
+			"keccak256": "0xe010751e1ad41e211670d600af1a086b07055662d9162366389bf0057202c043",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://78ed0bc6442fb69b48b7b87de51284f10e4389e7184ca0c5bb168e983bfc9a7c",
-				"dweb:/ipfs/QmRVDciVXUPKnaDQy2nLDigLD9nbtseAUBqyi6c6SUa6Jb"
+				"bzz-raw://a48b3c9ed79df1ad848a07192fc09f8aedce63639c80d4bf70353f30256215c2",
+				"dweb:/ipfs/QmTuT3VuGZsEE5TL3HTXcw3u6mY89UEqa61Au43kCKynDA"
 			]
 		}
 	},

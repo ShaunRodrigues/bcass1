@@ -9,7 +9,6 @@ import "./Elections/FPTPElection.sol";
 import "./Elections/IRVElection.sol";
 import "./Elections/CondorcetElection.sol";
 import "./Elections/BordaElection.sol";
-import "./Elections/PRElectionDhondt.sol";
 
 contract ElectionFactory is Ownable {
     using Clones for address;
@@ -22,40 +21,40 @@ contract ElectionFactory is Ownable {
     address public irvImpl;
     address public condorcetImpl;
     address public bordaImpl;
-    address public prImpl;
+    //address public prImpl;
 
     event FPTPCreated(address indexed election);
     event IRVCreated(address indexed election);
     event CondorcetCreated(address indexed election);
     event BordaCreated(address indexed election);
-    event PRCreated(address indexed election);
+    //event PRCreated(address indexed election);
 
     constructor(
         address _fptpImpl,
         address _irvImpl,
         address _condorcetImpl,
-        address _bordaImpl,
-        address _prImpl
+        address _bordaImpl
+        //address _prImpl
     ) {
         fptpImpl = _fptpImpl;
         irvImpl = _irvImpl;
         condorcetImpl = _condorcetImpl;
         bordaImpl = _bordaImpl;
-        prImpl = _prImpl;
+        //prImpl = _prImpl;
     }
 
     function setImplementations(
         address _fptpImpl,
         address _irvImpl,
         address _condorcetImpl,
-        address _bordaImpl,
-        address _prImpl
+        address _bordaImpl
+        //address _prImpl
     ) external onlyOwner {
         fptpImpl = _fptpImpl;
         irvImpl = _irvImpl;
         condorcetImpl = _condorcetImpl;
         bordaImpl = _bordaImpl;
-        prImpl = _prImpl;
+        //prImpl = _prImpl;
     }
 
     function createFPTP(
@@ -105,6 +104,34 @@ contract ElectionFactory is Ownable {
         BordaElection(clone).initialize(registry, clone, name, commitDeadline, revealDeadline, candidates, msg.sender);
         emit BordaCreated(clone);
         return clone;
+    }
+
+    function switchBorda(
+        address newBordaImpl
+    ) external onlyOwner returns (bool) {
+        bordaImpl=newBordaImpl;
+        return true;
+    }
+
+    function switchFPTP(
+        address newFPTPImpl
+    ) external onlyOwner returns (bool) {
+        fptpImpl=newFPTPImpl;
+        return true;
+    }
+
+    function switchIRV(
+        address newIRVImpl
+    ) external onlyOwner returns (bool) {
+        irvImpl=newIRVImpl;
+        return true;
+    }
+
+    function switchCondorcet(
+        address newCondorcetImpl
+    ) external onlyOwner returns (bool) {
+        condorcetImpl=newCondorcetImpl;
+        return true;
     }
 /*
     function createPRDhondt(
