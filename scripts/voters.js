@@ -2,11 +2,11 @@ import { ethers } from "ethers";
 import fs from "fs";
 
 // ========= CONFIG =========
-const RPC_URL = "https://sepolia.infura.io/v3/<YOUR_KEY>"; // or Anvil/Ganache URL
+const RPC_URL = "https://sepolia.infura.io/v3/"; // or Anvil/Ganache URL
 const OWNER_PRIVATE_KEY = ""; // the factory owner key (for creating elections)
 
-const FACTORY_ADDRESS = "0x1885e87c6b4bc0916306cc7a2f9ec8ff63eede3d"; // your deployed factory
-const REGISTRY_ADDRESS = "0x1885e87c6b4bc0916306cc7a2f9ec8ff63eede3d"; // your deployed factory
+const FACTORY_ADDRESS = "0xf845070b31c2baebd23f83ec51bdd068182a5add"; // your deployed factory
+const REGISTRY_ADDRESS = "0xe31b87504cbbe563a6c3a3c98d8cf76bfb78ec20"; // your deployed factory
 
 // === Load ABIs ===
 const factoryAbi = JSON.parse(fs.readFileSync("./artifacts/ElectionFactory.json")).abi;
@@ -67,18 +67,26 @@ async function waitUntilPhase(election, target /* "reveal" | "finalize" */) {
 
   const commitDeadline = await election.commitDeadline(); // uint64
   const revealDeadline = await election.revealDeadline(); // uint64
-
+  const phase = await election.phase();
   if (target === "reveal") {
     if (now < commitDeadline) {
       const ms = Number(commitDeadline - now) * 1000 + 2000;
       console.log(`⏳ Waiting ~${Math.ceil(ms / 1000)}s for reveal phase...`);
       await sleep(ms);
+    }else if(phase=="Commit")
+    {
+      const s =await election.advancePhase();
+      await s.wait();
     }
   } else if (target === "finalize") {
     if (now < revealDeadline) {
       const ms = Number(revealDeadline - now) * 1000 + 2000;
       console.log(`⏳ Waiting ~${Math.ceil(ms / 1000)}s to finalize...`);
       await sleep(ms);
+    }else if(phase=="Reveal")
+    {
+      const s =await election.advancePhase();
+      await s.wait();
     }
   }
 }

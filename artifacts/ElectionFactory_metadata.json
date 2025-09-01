@@ -26,11 +26,6 @@
 						"internalType": "address",
 						"name": "_bordaImpl",
 						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_prImpl",
-						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -126,19 +121,6 @@
 					}
 				],
 				"name": "OwnershipTransferred",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "election",
-						"type": "address"
-					}
-				],
-				"name": "PRCreated",
 				"type": "event"
 			},
 			{
@@ -363,19 +345,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "prImpl",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "registry",
 				"outputs": [
 					{
@@ -407,11 +376,6 @@
 					{
 						"internalType": "address",
 						"name": "_bordaImpl",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_prImpl",
 						"type": "address"
 					}
 				],
@@ -502,11 +466,11 @@
 			]
 		},
 		"contracts/ElectionFactory.sol": {
-			"keccak256": "0x9ad3c1ba8bc06ed642f61654bfaadbae9936926dd5a5a43ed3502724efb2a8d5",
+			"keccak256": "0x0199009cca75b301ddff247bc6d562b29c391bec705f39c2bb183f40e357307b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://067e07db5822172cacfa037cb4792913673523a07e0d137a30cf30351b9c3f80",
-				"dweb:/ipfs/QmNgZ6KY1WSYd2qZ3cpAX3QKRTE8ByUAq8tTxouvsfy3NC"
+				"bzz-raw://4411785047d603eeb2fa532f264c848afbc01c4e8642d3fb442fe14d97645863",
+				"dweb:/ipfs/QmbgKyAsBme92XS5SWPD9MJxvndtomqFBj54TNnYktjBfh"
 			]
 		},
 		"contracts/Elections/BordaElection.sol": {

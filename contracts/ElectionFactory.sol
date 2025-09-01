@@ -22,40 +22,35 @@ contract ElectionFactory is Ownable {
     address public irvImpl;
     address public condorcetImpl;
     address public bordaImpl;
-    address public prImpl;
+
 
     event FPTPCreated(address indexed election);
     event IRVCreated(address indexed election);
     event CondorcetCreated(address indexed election);
     event BordaCreated(address indexed election);
-    event PRCreated(address indexed election);
 
     constructor(
         address _fptpImpl,
         address _irvImpl,
         address _condorcetImpl,
-        address _bordaImpl,
-        address _prImpl
+        address _bordaImpl
     ) {
         fptpImpl = _fptpImpl;
         irvImpl = _irvImpl;
         condorcetImpl = _condorcetImpl;
         bordaImpl = _bordaImpl;
-        prImpl = _prImpl;
     }
 
     function setImplementations(
         address _fptpImpl,
         address _irvImpl,
         address _condorcetImpl,
-        address _bordaImpl,
-        address _prImpl
+        address _bordaImpl
     ) external onlyOwner {
         fptpImpl = _fptpImpl;
         irvImpl = _irvImpl;
         condorcetImpl = _condorcetImpl;
         bordaImpl = _bordaImpl;
-        prImpl = _prImpl;
     }
 
     function createFPTP(
