@@ -9,7 +9,7 @@ import "./Elections/FPTPElection.sol";
 import "./Elections/IRVElection.sol";
 import "./Elections/CondorcetElection.sol";
 import "./Elections/BordaElection.sol";
-import "./Elections/PRElectionDhondt.sol";
+//import "./Elections/PRElectionDhondt.sol";
 
 contract ElectionFactory is Ownable {
     using Clones for address;

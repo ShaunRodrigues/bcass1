@@ -10,9 +10,9 @@
 				"inputs": [
 					{
 						"indexed": true,
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					},
 					{
 						"indexed": false,
@@ -25,6 +25,12 @@
 						"internalType": "address",
 						"name": "registrant",
 						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
 					}
 				],
 				"name": "IdentityCommitmentAdded",
@@ -35,9 +41,9 @@
 				"inputs": [
 					{
 						"indexed": true,
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					},
 					{
 						"indexed": false,
@@ -50,6 +56,12 @@
 						"internalType": "address",
 						"name": "removedBy",
 						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
 					}
 				],
 				"name": "IdentityCommitmentRemoved",
@@ -77,9 +89,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					}
 				],
 				"name": "deregister",
@@ -96,9 +108,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					}
 				],
 				"name": "getActiveICs",
@@ -115,9 +127,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					}
 				],
 				"name": "getAllICs",
@@ -134,9 +146,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					},
 					{
 						"internalType": "bytes32",
@@ -171,19 +183,13 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "electionId",
-						"type": "uint256"
+						"type": "address"
 					}
 				],
 				"name": "register",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "success",
-						"type": "bool"
-					}
-				],
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -235,19 +241,19 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"deregister(uint256)": {
+				"deregister(address)": {
 					"notice": "Allow owner or the original registrant to deregister"
 				},
-				"getActiveICs(uint256)": {
+				"getActiveICs(address)": {
 					"notice": "Get only active voters for an election"
 				},
-				"getAllICs(uint256)": {
+				"getAllICs(address)": {
 					"notice": "Get full voter history for an election"
 				},
-				"isActive(uint256,bytes32)": {
+				"isActive(address,bytes32)": {
 					"notice": "Check whether an IC is currently active in an election"
 				},
-				"register(uint256)": {
+				"register(address)": {
 					"notice": "Allow anyone to register themselves for an election"
 				},
 				"setRegistrationOpen(bool)": {
@@ -285,11 +291,11 @@
 			]
 		},
 		"contracts/VoterRegistry.sol": {
-			"keccak256": "0x060c8a60956895bb5f22cc7488311d921aeff5fb10778506890c54d3c388d062",
+			"keccak256": "0x9d1d5630fc99095ef2ffb5155f51e0965ab804b5546f52d932adfa18131ca71d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://78ed0bc6442fb69b48b7b87de51284f10e4389e7184ca0c5bb168e983bfc9a7c",
-				"dweb:/ipfs/QmRVDciVXUPKnaDQy2nLDigLD9nbtseAUBqyi6c6SUa6Jb"
+				"bzz-raw://331e5dbd8bf6d44b397be5031d800bfc22400c451b8c2be0ddf3983c7adb9779",
+				"dweb:/ipfs/QmSgfR4RcE5tmGuNrzBUWkwnoiEG8qvbJ4uMFDjP4zoePc"
 			]
 		}
 	},

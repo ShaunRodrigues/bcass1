@@ -52,7 +52,6 @@
 			"advancePhase()": "be25a718",
 			"commit(bytes32)": "f14fcbc8",
 			"commitDeadline()": "a2ff0209",
-			"electionId()": "051364d4",
 			"finalize()": "4bb278f3",
 			"hasCommit(bytes32)": "a4071b7f",
 			"name()": "06fdde03",
@@ -60,7 +59,7 @@
 			"owner()": "8da5cb5b",
 			"phase()": "b1c9fe6e",
 			"registry()": "7b103999",
-			"reveal(bytes,bytes32,bytes32)": "9df1baa1",
+			"reveal(bytes,bytes32)": "fa7fe7a0",
 			"revealDeadline()": "b14b28a3",
 			"setDeadlines(uint64,uint64)": "53481b5e",
 			"transferOwnership(address)": "f2fde38b"
@@ -172,19 +171,6 @@
 		},
 		{
 			"inputs": [],
-			"name": "electionId",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
 			"name": "finalize",
 			"outputs": [],
 			"stateMutability": "nonpayable",
@@ -286,11 +272,6 @@
 					"internalType": "bytes",
 					"name": "ballotEncoded",
 					"type": "bytes"
-				},
-				{
-					"internalType": "bytes32",
-					"name": "salt",
-					"type": "bytes32"
 				},
 				{
 					"internalType": "bytes32",

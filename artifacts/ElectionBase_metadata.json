@@ -110,19 +110,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "electionId",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "finalize",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -227,11 +214,6 @@
 					},
 					{
 						"internalType": "bytes32",
-						"name": "salt",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "bytes32",
 						"name": "secret",
 						"type": "bytes32"
 					}
@@ -318,11 +300,11 @@
 	},
 	"sources": {
 		"contracts/Elections/ElectionBase.sol": {
-			"keccak256": "0x02184125e99958bdb3be108fd495eb0a4b762364220f7495e8554f36edc313f1",
+			"keccak256": "0x7b18e635e02af1c0ca00c90b8dbd4f77b95a92faa756ee7e3505a6bf06e57d88",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b790ff46919dcfdb9ed027196621198c2720716fb8f60ce9133ac20835c2f909",
-				"dweb:/ipfs/QmQUvw2jSsrxBdD1BoTRA29pDX65CAB8PUC7PqMecxPQ8S"
+				"bzz-raw://a4215680a855f7a2cdabe3e9d26faa3e23afd5482e0324a0545ff46c85909ec1",
+				"dweb:/ipfs/QmQB9btfoZHQbZs23ey3AXzzUwEydDWJCsHcD13dAsHCXd"
 			]
 		},
 		"contracts/Ownable.sol": {
@@ -334,11 +316,11 @@
 			]
 		},
 		"contracts/VoterRegistry.sol": {
-			"keccak256": "0xe31c510df5bc1366f7dee530a23823586965532f216f32bd9d615026ce9291f7",
+			"keccak256": "0x9d1d5630fc99095ef2ffb5155f51e0965ab804b5546f52d932adfa18131ca71d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://65bd4e0fc2d0b593ad940708e256db4ea470c089fcf2862d9a80463c16940dda",
-				"dweb:/ipfs/QmNpFCgSpVUyQ52LjTae44WEXZF5hPZZ4pi6xuwLxwDyTp"
+				"bzz-raw://331e5dbd8bf6d44b397be5031d800bfc22400c451b8c2be0ddf3983c7adb9779",
+				"dweb:/ipfs/QmSgfR4RcE5tmGuNrzBUWkwnoiEG8qvbJ4uMFDjP4zoePc"
 			]
 		}
 	},

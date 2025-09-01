@@ -53,11 +53,11 @@ contract VoterRegistry is Ownable {
     // Dummy switch: only when true can new registrations happen
     bool public registrationOpen = true;
 
-    event IdentityCommitmentAdded(address indexed electionId, bytes32 ic, address registrant);
-    event IdentityCommitmentRemoved(address indexed electionId, bytes32 ic, address removedBy);
+    event IdentityCommitmentAdded(address indexed electionId, bytes32 ic, address registrant, bool success);
+    event IdentityCommitmentRemoved(address indexed electionId, bytes32 ic, address removedBy, bool success);
 
     /// @notice Allow anyone to register themselves for an election
-    function register(address electionId) external returns (bool success) {
+    function register(address electionId) external {
         require(registrationOpen, "Registration is closed");
         bytes32 ic = keccak256(abi.encodePacked(msg.sender, electionId));
         require(!isRegisteredIC[electionId][ic], "Already registered");
@@ -67,8 +67,7 @@ contract VoterRegistry is Ownable {
         registeredICs[electionId].push(ic);
         icOwner[electionId][ic] = msg.sender;
 
-        emit IdentityCommitmentAdded(electionId, ic, msg.sender);
-        return true;
+        emit IdentityCommitmentAdded(electionId, ic, msg.sender, registrationOpen);
     }
 
     /// @notice Allow owner or the original registrant to deregister
@@ -81,7 +80,7 @@ contract VoterRegistry is Ownable {
         );
 
         isRegisteredIC[electionId][ic] = false;
-        emit IdentityCommitmentRemoved(electionId, ic, msg.sender);
+        emit IdentityCommitmentRemoved(electionId, ic, msg.sender, true);
         return true;
     }
 
