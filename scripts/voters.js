@@ -46,20 +46,9 @@ function findEvent(receipt, iface, name) {
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // Encode ballots (per election type)
-const encodeBallotFPTP = (choiceIndex) =>
-  ethers.AbiCoder.defaultAbiCoder().encode(["uint256"], [choiceIndex]);
 
-const encodeBallotIRV = (rankingArray /* uint8[] */) =>
+const encodeBallot = (rankingArray /* uint8[] */) =>
   ethers.AbiCoder.defaultAbiCoder().encode(["uint8[]"], [rankingArray]);
-
-const encodeBallotBorda = (rankingArray /* uint8[] */) =>
-  ethers.AbiCoder.defaultAbiCoder().encode(["uint8[]"], [rankingArray]);
-
-const encodeBallotCondorcet = (rankingArray /* uint8[] */) =>
-  ethers.AbiCoder.defaultAbiCoder().encode(["uint8[]"], [rankingArray]);
-
-const encodeBallotPR = (partyIndex /* uint256 */) =>
-  ethers.AbiCoder.defaultAbiCoder().encode(["uint256"], [partyIndex]);
 
 // Compute commit hash = keccak256(abi.encodePacked(election, ballotEncoded, salt, secret))
 function computeCommit(electionAddress, ballotEncoded, salt32, secret32) {
@@ -160,22 +149,23 @@ async function registerVoterForElection(voterSigner, electionAddress) {
 }
 
 // Commit a ballot for FPTP (same pattern for other methods)
-async function commitBallotFPTP(voterSigner, electionAddress, choiceIndex, secrets) {
-  const election = attach(electionAddress, fptpAbi, voterSigner);
+async function commitBallot(voterSigner, abi, electionAddress, choiceArray, secret) {
+  const election = attach(electionAddress, abi, voterSigner);
 
-  const ballotEncoded = encodeBallotFPTP(choiceIndex);
-  const salt = secrets.salt ?? rand32();
-  const secret = secrets.secret ?? rand32();
+  const ballotEncoded = encodeBallot(choiceArray);
+  /*let password = prompt("Enter your password:");
+  console.log("Here, " + password);
+  const secret = password;*/
 
-  const comHash = computeCommit(electionAddress, ballotEncoded, salt, secret);
+  const comHash = computeCommit(electionAddress, ballotEncoded, secret);
   const tx = await election.commit(comHash);
   await tx.wait();
 
   console.log(`🔒 Commit from ${await voterSigner.getAddress()} (choice=${choiceIndex})`);
-  return { ballotEncoded, salt, secret };
+  return { ballotEncoded };
 }
 
-async function revealBallot(voterSigner, electionAddress, ballotEncoded, salt, secret, abi = fptpAbi) {
+async function revealBallot(voterSigner, abi = fptpAbi, electionAddress, ballotEncoded, secret) {
   const election = attach(electionAddress, abi, voterSigner);
   const tx = await election.reveal(ballotEncoded, salt, secret);
   await tx.wait();

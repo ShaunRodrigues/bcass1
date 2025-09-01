@@ -107,6 +107,13 @@ abstract contract ElectionBase is Ownable {
         require(phase == Phase.Finalized, "ElectionBase: not finalized");
     }
 
+    function getResult(string cand) external view {
+        for (uint i =0;i<candidates.length)
+        require();
+        advancePhase();
+        require(phase == Phase.Finalized, "ElectionBase: not finalized");
+    }
+
     // hooks for concrete elections
     function _recordBallot(bytes memory ballotEncoded) internal virtual;
     function _finalize() internal virtual;
@@ -130,7 +137,7 @@ abstract contract ElectionBase is Ownable {
     uint64 public revealDeadline;
 
     // Commitments
-    // comHash = keccak256( abi.encodePacked(electionId, ballotEncoded, salt, secret) )
+    // comHash = keccak256( abi.encodePacked(electionId, ballotEncoded, secret) )
     mapping(bytes32 => bool) public hasCommit;
     // nullifier = keccak256( abi.encodePacked(secret, electionId) )
     mapping(bytes32 => bool) public nullifierUsed;
@@ -195,9 +202,9 @@ abstract contract ElectionBase is Ownable {
         emit Committed(comHash);
     }
 
-    function reveal(bytes memory ballotEncoded, bytes32 salt, bytes32 secret) public inPhase(Phase.Reveal) {
+    function reveal(bytes memory ballotEncoded, bytes32 secret) public inPhase(Phase.Reveal) {
         require(block.timestamp < revealDeadline, "reveal over");
-        bytes32 comHash = keccak256(abi.encodePacked(election, ballotEncoded, salt, secret));
+        bytes32 comHash = keccak256(abi.encodePacked(election, ballotEncoded, secret));
         require(hasCommit[comHash], "no commit");
 
         bytes32 ic = keccak256(abi.encodePacked(msg.sender, election));

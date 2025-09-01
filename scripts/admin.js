@@ -28,13 +28,13 @@ async function deployElection(factory, type, name, candidates) {
 
   let tx;
   if (type === "FPTP") {
-    tx = await factory.createFPTP(name, commitDeadline, revealDeadline, candidatess);
+    tx = await factoryAbi.createFPTP(name, commitDeadline, revealDeadline, candidates);
   } else if (type === "IRV") {
-    tx = await factory.createIRV(name, commitDeadline, revealDeadline, candidates);
+    tx = await factoryAbi.createIRV(name, commitDeadline, revealDeadline, candidates);
   } else if (type === "BORDA") {
-    tx = await factory.createBorda(name, commitDeadline, revealDeadline, candidates);
+    tx = await factoryAbi.createBorda(name, commitDeadline, revealDeadline, candidates);
   } else if (type === "CONDORCET") {
-    tx = await factory.createCondorcet(name, commitDeadline, revealDeadline, candidates);
+    tx = await factoryAbi.createCondorcet(name, commitDeadline, revealDeadline, candidates);
   /*} else if (type === "PR") {
     tx = await factory.createPRDhondt(
       name,
@@ -62,6 +62,7 @@ async function deployElection(factory, type, name, candidates) {
   return event.args.election;
 }
 
+/*
 async function registerVoters(election, abi, voterWallets) {
   const contract = new ethers.Contract(election, abi, signer);
 
@@ -71,37 +72,14 @@ async function registerVoters(election, abi, voterWallets) {
     console.log("Registered voter:", v.address);
   }
 }
+*/
 
-async function commitVotes(election, abi, votes, salts) {
-  const contract = new ethers.Contract(election, abi, signer);
-
-  const commits = votes.map((v, i) =>
-    ethers.keccak256(
-      ethers.AbiCoder.defaultAbiCoder().encode(["uint256", "string"], [v, salts[i]])
-    )
-  );
-
-  for (let i = 0; i < votes.length; i++) {
-    const tx = await contract.commitVote(commits[i]);
-    await tx.wait();
-    console.log(`Voter ${i + 1} committed`);
-  }
-}
-
-async function revealVotes(election, abi, votes, salts) {
-  const contract = new ethers.Contract(election, abi, signer);
-
-  for (let i = 0; i < votes.length; i++) {
-    const tx = await contract.revealVote(votes[i], salts[i]);
-    await tx.wait();
-    console.log(`Voter ${i + 1} revealed`);
-  }
-}
 
 async function getWinner(election, abi) {
   const contract = new ethers.Contract(election, abi, signer);
-  const winner = await contract.getWinner();
-  console.log("🏆 Election Winner is:", winner.toString());
+  const winner = await contract.winner;
+  co
+  console.log("🏆 Election Winner is:", contrawinner.toInt());
 }
 
 // ================== MAIN ==================
@@ -117,11 +95,6 @@ async function main() {
   );
   console.log("Election deployed at:", electionAddr);
 
-  const voterWallets = [
-    ethers.Wallet.createRandom(),
-    ethers.Wallet.createRandom(),
-    ethers.Wallet.createRandom()
-  ];
 
   await registerVoters(electionAddr, fptpAbi, voterWallets);
 

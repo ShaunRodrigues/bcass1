@@ -125,4 +125,6 @@ contract BordaElection is ElectionBase {
         winner = win;
         emit Finalized();
     }
+
+    function 
 }
